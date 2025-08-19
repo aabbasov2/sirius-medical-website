@@ -171,12 +171,12 @@ For questions about this website or Sirius Medical Services:
 **California Office:**
 - Address: 123 Medical Plaza, Suite 456, Los Angeles, CA 90210
 - Phone: +1 (555) 123-4567
-- Email: info@siriusmedical.com
+- Email: info@siriusmedicals.com
 
 **Kazakhstan Office:**
 - Address: 789 Healthcare Avenue, Astana 010000, Kazakhstan
 - Phone: +7 (717) 234-5678
-- Email: astana@siriusmedical.com
+- Email: astana@siriusmedicals.com
 
 ## 📄 License
 
