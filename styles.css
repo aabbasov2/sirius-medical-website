@@ -1173,6 +1173,16 @@ section {
         padding: 0 0.5rem;
     }
 
+    .story-text p,
+    .hero-text p,
+    .value-card p,
+    .benefit-card p,
+    .service-card p,
+    .category-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -3010,4 +3020,9 @@ section {
     background: none !important;
     animation: none !important;
   }
-  
+  @media (max-width: 600px) {
+    .values-grid,
+    .vm-grid {
+      grid-template-columns: 1fr;
+    }
+  }  
