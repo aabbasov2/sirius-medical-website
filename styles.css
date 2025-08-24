@@ -2961,3 +2961,53 @@ section {
     .strip-inner, .glass-rail .strip-inner::after { animation: none !important; }
   }
   
+  /* --- MOBILE FIX PACK --- */
+
+/* 1) Stack the hero grids on phones/tablets */
+@media (max-width: 860px) {
+    .partners-hero .hero-grid,
+    .doctors-hero .hero-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+    /* Put the image under the copy (looks cleaner on mobile) */
+    .partners-hero .hero-image,
+    .doctors-hero .hero-image {
+      order: 2;
+    }
+    .partners-hero .hero-text,
+    .doctors-hero .hero-text {
+      order: 1;
+    }
+  }
+  
+  /* 2) Your services grid still uses 4 columns on mobile — collapse it */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr !important; }
+  }
+  
+  /* 3) Tabs: allow wrapping so buttons don't overflow */
+  .tab-buttons { flex-wrap: wrap; }
+  @media (max-width: 480px) {
+    .tab-button { flex: 1 1 100%; }
+  }
+  
+  /* 4) Kill rogue horizontal scroll from animations / wide grids */
+  html, body { overflow-x: hidden; }
+  
+  /* 5) Mobile menu: align dropdown with fixed navbar height */
+  @media (max-width: 768px) {
+    .nav-menu { top: 60px; } /* navbar is 60px high */
+  }
+  
+  /* 6) Make the partners/doctors “hero-grid” immune to the ECG hero styles */
+  .partners-hero .hero-grid,
+  .doctors-hero .hero-grid {
+    position: relative !important;
+    background: none !important;
+    animation: none !important;
+  }
+  
