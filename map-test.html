@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Diagnostic</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        
+        .diagnostic {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .test-map {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        /* Super specific CSS for testing */
+        .test-map svg #gKAZ,
+        .test-map svg #gUZB,
+        .test-map svg #gAZE,
+        .test-map svg #gMDA,
+        .test-map svg #gBLR,
+        .test-map svg #gUKR,
+        .test-map svg #gGEO,
+        .test-map svg #gTJK,
+        .test-map svg #gKGZ {
+            fill: #14B8A6 !important;
+            stroke: #FFFFFF !important;
+            stroke-width: 2px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        /* Force hover state */
+        .test-map svg #gKAZ:hover,
+        .test-map svg #gUZB:hover,
+        .test-map svg #gAZE:hover,
+        .test-map svg #gMDA:hover,
+        .test-map svg #gBLR:hover,
+        .test-map svg #gUKR:hover,
+        .test-map svg #gGEO:hover,
+        .test-map svg #gTJK:hover,
+        .test-map svg #gKGZ:hover {
+            fill: #5EEAD4 !important;
+            filter: drop-shadow(0 4px 8px rgba(20, 184, 166, 0.4)) !important;
+            transform: scale(1.05) !important;
+        }
+        
+        /* Disable all child pointer events */
+        .test-map svg #gKAZ *,
+        .test-map svg #gUZB *,
+        .test-map svg #gAZE *,
+        .test-map svg #gMDA *,
+        .test-map svg #gBLR *,
+        .test-map svg #gUKR *,
+        .test-map svg #gGEO *,
+        .test-map svg #gTJK *,
+        .test-map svg #gKGZ * {
+            pointer-events: none !important;
+            fill: inherit !important;
+            stroke: inherit !important;
+        }
+        
+        .debug-info {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagnostic">
+        <h1>🔍 Map Hover Diagnostic</h1>
+        <p>This test will help us figure out why hover effects aren't working.</p>
+        
+        <div id="test-results">
+            <div>⏳ Running tests...</div>
+        </div>
+    </div>
+    
+    <div class="test-map">
+        <!-- Paste a small portion of your SVG here for testing -->
+        <svg width="400" height="200" viewBox="0 0 1100 549.8" xmlns="http://www.w3.org/2000/svg">
+            <!-- Test with a simple group structure -->
+            <g id="gKAZ">
+                <path d="M 100,50 L 200,50 L 200,100 L 100,100 Z" fill="#cccccc" stroke="#999999"/>
+                <text x="150" y="80" text-anchor="middle" fill="black" font-size="12">KAZ (Test)</text>
+            </g>
+            
+            <g id="gUZB">
+                <path d="M 220,50 L 320,50 L 320,100 L 220,100 Z" fill="#cccccc" stroke="#999999"/>
+                <text x="270" y="80" text-anchor="middle" fill="black" font-size="12">UZB (Test)</text>
+            </g>
+        </svg>
+    </div>
+    
+    <div class="debug-info" id="debug-log">
+        <div>🔄 Debug log will appear here...</div>
+    </div>
+
+    <script>
+        let debugLog = [];
+        
+        function log(message) {
+            console.log(message);
+            debugLog.push(new Date().toLocaleTimeString() + ': ' + message);
+            updateDebugLog();
+        }
+        
+        function updateDebugLog() {
+            const debugElement = document.getElementById('debug-log');
+            debugElement.innerHTML = debugLog.map(msg => `<div>${msg}</div>`).join('');
+            debugElement.scrollTop = debugElement.scrollHeight;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🚀 Starting diagnostic tests...');
+            
+            const testResults = document.getElementById('test-results');
+            const results = [];
+            
+            // Test 1: Check if countries exist
+            const countries = ['gKAZ', 'gUZB', 'gAZE', 'gMDA', 'gBLR', 'gUKR', 'gGEO', 'gTJK', 'gKGZ'];
+            let foundCountries = 0;
+            
+            countries.forEach(countryId => {
+                const element = document.getElementById(countryId);
+                if (element) {
+                    foundCountries++;
+                    log(`✅ Found ${countryId}`);
+                    
+                    // Add test event listeners
+                    element.addEventListener('mouseenter', () => {
+                        log(`🖱️ Mouse entered ${countryId}`);
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        log(`🖱️ Mouse left ${countryId}`);
+                    });
+                    
+                    element.addEventListener('click', () => {
+                        log(`🖱️ Clicked ${countryId}`);
+                        alert(`Clicked ${countryId}!`);
+                    });
+                    
+                } else {
+                    log(`❌ Missing ${countryId}`);
+                }
+            });
+            
+            results.push(`Found ${foundCountries}/${countries.length} countries`);
+            
+            // Test 2: Check CSS specificity
+            const testElement = document.getElementById('gKAZ');
+            if (testElement) {
+                const computedStyle = window.getComputedStyle(testElement);
+                log(`🎨 gKAZ fill color: ${computedStyle.fill}`);
+                log(`🎨 gKAZ cursor: ${computedStyle.cursor}`);
+                log(`🎨 gKAZ pointer-events: ${computedStyle.pointerEvents}`);
+                
+                results.push(`CSS applied: ${computedStyle.cursor === 'pointer' ? '✅' : '❌'}`);
+            }
+            
+            // Test 3: Check for style conflicts
+            const allStyles = Array.from(document.styleSheets)
+                .flatMap(sheet => {
+                    try {
+                        return Array.from(sheet.cssRules);
+                    } catch(e) {
+                        return [];
+                    }
+                })
+                .filter(rule => rule.selectorText && rule.selectorText.includes('gKAZ'))
+                .map(rule => rule.selectorText);
+            
+            log(`🔍 CSS rules targeting gKAZ: ${allStyles.length}`);
+            allStyles.forEach(selector => log(`   - ${selector}`));
+            
+            results.push(`CSS rules found: ${allStyles.length}`);
+            
+            // Test 4: Manual hover test
+            setTimeout(() => {
+                const kazElement = document.getElementById('gKAZ');
+                if (kazElement) {
+                    log('🧪 Testing manual hover simulation...');
+                    
+                    // Simulate mouseenter
+                    const enterEvent = new MouseEvent('mouseenter', {
+                        bubbles: true,
+                        cancelable: true,
+                        view: window
+                    });
+                    kazElement.dispatchEvent(enterEvent);
+                    
+                    setTimeout(() => {
+                        // Simulate mouseleave
+                        const leaveEvent = new MouseEvent('mouseleave', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window
+                        });
+                        kazElement.dispatchEvent(leaveEvent);
+                    }, 2000);
+                }
+            }, 1000);
+            
+            testResults.innerHTML = results.map(result => `<div>• ${result}</div>`).join('');
+            
+            log('✅ Diagnostic tests completed');
+        });
+    </script>
+</body>
+</html>
