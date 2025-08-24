@@ -2844,3 +2844,120 @@ section {
     grid-template-columns: 1fr; /* stack on small screens */
   }
 }
+
+/* ===== GLASSMORPHISM PARTNERS STRIP UPGRADE ===== */
+
+.partners-strip.glass {
+    position: relative;
+    background: linear-gradient(135deg, rgba(20,184,166,.06) 0%, rgba(30,41,59,.06) 100%);
+    border-top: 1px solid rgba(20,184,166,.10);
+    border-bottom: 1px solid rgba(20,184,166,.10);
+    padding: 4.5rem 0;
+  }
+  
+  /* The “glass rail” the pills/logos glide on */
+  .glass-rail {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.20);
+    box-shadow:
+      0 10px 30px rgba(0,0,0,.08),
+      inset 0 1px 0 rgba(255,255,255,.35);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+  }
+  
+  /* Soft edge fades (left/right masks) */
+  .glass-rail::before,
+  .glass-rail::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 70px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .glass-rail::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,.65), rgba(255,255,255,0));
+  }
+  .glass-rail::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,.65), rgba(255,255,255,0));
+  }
+  
+  /* Animated “shine” that drifts across the rail */
+  .glass-rail .strip-inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(255,255,255,.10) 40%,
+      rgba(255,255,255,.18) 50%,
+      rgba(255,255,255,.10) 60%,
+      transparent 100%);
+    transform: translateX(-100%);
+    animation: railShine 8s linear infinite;
+  }
+  @keyframes railShine {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  /* Parallax speed variance between rows */
+  .partners-strip .glass-rail:nth-of-type(1) .strip-inner { animation-duration: 28s; }
+  .partners-strip .glass-rail:nth-of-type(2) .strip-inner { animation-duration: 40s; }
+  
+  /* Pause everything on hover for readability */
+  .glass-rail:hover .strip-inner { animation-play-state: paused; }
+  
+  /* --- Logo-ready pill styling --- */
+  .pills { gap: 14px; padding: 0 1rem; }
+  .partner-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,.30);
+    background: rgba(255,255,255,.55);
+    padding: .7rem 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.6);
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease, filter .25s ease;
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Optional image logo inside the pill */
+  .partner-pill img {
+    height: 22px; width: auto;
+    display: block;
+    filter: grayscale(100%) contrast(1) opacity(.85);
+    transition: filter .25s ease, transform .25s ease;
+  }
+  
+  /* Hover glow + gentle lift */
+  .partner-pill:hover {
+    transform: translateY(-3px);
+    border-color: rgba(20,184,166,.45);
+    background: rgba(255,255,255,.8);
+    box-shadow:
+      0 10px 24px rgba(20,184,166,.18),
+      0 4px 10px rgba(0,0,0,.06);
+  }
+  .partner-pill:hover img {
+    filter: none;
+    transform: scale(1.06);
+  }
+  
+  /* Text-only pills look sharper on glass */
+  .partner-pill { color: var(--primary-navy); font-weight: 600; }
+  .partner-pill:hover { color: var(--primary-teal); }
+  
+  /* Reduce shimmer/animation for motion-sensitive users */
+  @media (prefers-reduced-motion: reduce) {
+    .strip-inner, .glass-rail .strip-inner::after { animation: none !important; }
+  }
+  
