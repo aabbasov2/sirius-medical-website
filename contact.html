@@ -9,7 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -34,10 +34,10 @@
                     <a href="about.html" class="nav-link">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="partners.html" class="nav-link">For Partners & Doctors</a>
+                    <a href="partners.html" class="nav-link">Our Partners</a>
                 </li>
                 <li class="nav-item">
-                    <a href="contact.html" class="nav-link active">Contact</a>
+                    <a href="contact.html" class="nav-link active">Contact Us</a>
                 </li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -66,17 +66,24 @@
                     
                     <div class="contact-methods">
                         <div class="contact-method">
-                            <div class="method-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <polyline points="22,6 12,13 2,6"/>
-                                </svg>
-                            </div>
+                            <i class="fas fa-envelope email-icon"></i>
                             <div class="method-details">
                                 <h4>Email Us</h4>
                                 <p>info@siriusmedicals.com</p>
-                                <span>Response within 24 hours</span>
+                                <small>Response within 24 hours</small>
                             </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -119,14 +126,6 @@
                             <textarea id="message" name="message" rows="5" required placeholder="Please describe your inquiry or how we can help you..."></textarea>
                         </div>
                         
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="newsletter" name="newsletter">
-                                <span class="checkmark"></span>
-                                Subscribe to our newsletter for updates on new products and industry insights
-                            </label>
-                        </div>
-                        
                         <button type="submit" class="submit-button">
                             <span class="button-text">Send Message</span>
                             <div class="button-loader" style="display: none;">
@@ -134,63 +133,6 @@
                             </div>
                         </button>
                     </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-            </div>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>How quickly can you respond to inquiries?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call us directly for immediate assistance.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Do you provide international shipping?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, we ship to over 50 countries worldwide. Our global logistics network ensures reliable delivery with full regulatory compliance.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What certifications do your products have?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>All our products meet international standards including ISO 13485, FDA registration, CE marking, and GMP certification. Specific certifications vary by product category.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Do you offer technical support and training?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Absolutely! We provide comprehensive technical support, product training, and ongoing assistance to ensure you get the most from our medical solutions.</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -217,15 +159,9 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="partners.html">For Partners</a></li>
-                        <li><a href="partners.html">For Doctors</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="partners.html">Partnerships</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>info@siriusmedicals.com</p>
-
                 </div>
             </div>
             <div class="footer-bottom">
